@@ -31,8 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ObservableObject {
         CLLocationManager.authorizationStatus()
         
         if launchOptions?[.location] != nil {
-            self.addLog("Launched with UIApplicationLaunchOptionsKey.location")
             locationManager.startMonitoringSignificantLocationChanges()
+            isLogging = true
         }
         
         return true
@@ -72,12 +72,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ObservableObject {
         UserDefaults.standard.set(logs, forKey: "logs")
     }
     
-    func checkLogs() -> Void {
-        if UserDefaults.standard.object(forKey: "logs") != nil {
-            let logs : [String] = UserDefaults.standard.object(forKey: "logs") as! [String]
-            print("logs:\(logs)")
-        }
-    }
+    //func checkLogs() -> Void {
+    //    if UserDefaults.standard.object(forKey: "logs") != nil {
+    //        let logs : [String] = UserDefaults.standard.object(forKey: "logs") as! [String]
+    //        print("logs:\(logs)")
+    //    }
+    //}
     
     func removeLogs() -> Void {
         UserDefaults.standard.set([], forKey: "logs")
@@ -90,10 +90,15 @@ func formatGPSLogRecord(location: CLLocation) -> String{
     let timestamp = df.string(from: location.timestamp)
     
     return timestamp + "\t" +
-        String(format: "%+.06f", location.coordinate.latitude) + "\t" +
-        String(format: "%+.06f", location.coordinate.longitude) + "\t" +
-        String(format: "%+.02f", location.altitude) + "\t" +
-        String(format: "%+.03f", location.speed)
+        String(format: "%+.09f", location.coordinate.latitude) + "\t" +
+        String(format: "%+.09f", location.coordinate.longitude) + "\t" +
+        String(format: "%+.03f", location.altitude) + "\t" +
+        String(format: "%+.03f", location.horizontalAccuracy) + "\t" +
+        String(format: "%+.03f", location.verticalAccuracy) + "\t" +
+        String(format: "%+.06f", location.speed) + "\t" +
+        String(format: "%+.06f", location.speedAccuracy) + "\t" +
+        String(format: "%+.03f", location.course) + "\t" +
+        String(format: "%+.03f", location.courseAccuracy)
 }
 
 extension AppDelegate: CLLocationManagerDelegate {
