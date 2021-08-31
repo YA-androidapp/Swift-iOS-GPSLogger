@@ -32,6 +32,7 @@ struct ContentView: View {
                 Button(action: {
                     let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
                     appDelegate?.removeLogs()
+                    logs = ""
                 }, label: {
                     Text("Clear logs")
                 }).frame(minWidth: 0, maxWidth: .infinity)
@@ -41,6 +42,14 @@ struct ContentView: View {
                     }
                 }, label: {
                     Text("Reload logs")
+                }).frame(minWidth: 0, maxWidth: .infinity)
+                Button(action: {
+                    if UserDefaults.standard.object(forKey: "logs") != nil {
+                        logs = (UserDefaults.standard.object(forKey: "logs") as! [String]).joined(separator: "\n")
+                        FileUtil.write(filename: FileUtil.getFilename(prefix: "export_", ext: ".txt"), content: logs)
+                    }
+                }, label: {
+                    Text("Export logs")
                 }).frame(minWidth: 0, maxWidth: .infinity)
             }
             .padding()
