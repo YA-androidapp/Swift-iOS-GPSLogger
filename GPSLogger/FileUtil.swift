@@ -16,7 +16,7 @@ class FileUtil{
         return prefix + formatter.string(from: now) + ext
     }
     
-    static func write(filename: String, content: String){
+    static func write(filename: String, content: String) -> String{
         let dir = FileManager.default.urls(
             for: .documentDirectory,
             in: .userDomainMask
@@ -25,8 +25,10 @@ class FileUtil{
 
         do {
             try content.write(to: fileUrl, atomically: false, encoding: .utf8)
+            return filename
         } catch {
             print("Error: \(error)")
+            return ""
         }
     }
 }

@@ -11,17 +11,23 @@ import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ObservableObject {
-    
     var window: UIWindow?
     
     var locationManager : CLLocationManager!
     
-    var isLogging = false
+    private var homeAreaRadius: Double = -1.0
+    private var homeAreaLocation: CLLocation?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        self.removeLogs()
+        
+        let homeAreaLatitude = UserDefaults.standard.double(forKey: "homeAreaLatitude")
+        let homeAreaLongitude = UserDefaults.standard.double(forKey: "homeAreaLongitude")
+        homeAreaRadius = UserDefaults.standard.double(forKey: "homeAreaRadius")
+        if -90 <= homeAreaLatitude && homeAreaLatitude <= 90 && -180 <= homeAreaLongitude && homeAreaLongitude <= 180 && 0 <= homeAreaRadius {
+            homeAreaLocation = CLLocation(latitude: homeAreaLatitude, longitude: homeAreaLongitude)
+        }
         
         locationManager = CLLocationManager.init()
         locationManager.allowsBackgroundLocationUpdates = true
@@ -32,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ObservableObject {
         
         if launchOptions?[.location] != nil {
             locationManager.startMonitoringSignificantLocationChanges()
-            isLogging = true
         }
         
         return true
@@ -40,27 +45,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ObservableObject {
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         locationManager.startMonitoringSignificantLocationChanges()
-        isLogging = true
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         locationManager.startMonitoringSignificantLocationChanges()
-        isLogging = true
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
         locationManager.startMonitoringSignificantLocationChanges()
-        isLogging = true
     }
     
     func startLocating() -> Void {
         locationManager.startUpdatingLocation()
-        isLogging = true
     }
     
     func stopLocating() -> Void {
         locationManager.stopUpdatingLocation()
-        isLogging = false
     }
     
     func addLog(_ log: String) -> Void {
@@ -71,13 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ObservableObject {
         logs.insert(log, at: 0)
         UserDefaults.standard.set(logs, forKey: "logs")
     }
-    
-    //func checkLogs() -> Void {
-    //    if UserDefaults.standard.object(forKey: "logs") != nil {
-    //        let logs : [String] = UserDefaults.standard.object(forKey: "logs") as! [String]
-    //        print("logs:\(logs)")
-    //    }
-    //}
     
     func removeLogs() -> Void {
         UserDefaults.standard.set([], forKey: "logs")
@@ -105,11 +98,14 @@ extension AppDelegate: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location : CLLocation = locations.last!;
-        self.addLog(formatGPSLogRecord(location: location))
         
-        print(
-            formatGPSLogRecord(location: location)
-        )
+        if(homeAreaLocation == nil || location.distance(from: homeAreaLocation!) > homeAreaRadius){
+            self.addLog(formatGPSLogRecord(location: location))
+            
+            print(
+                formatGPSLogRecord(location: location)
+            )
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -127,9 +123,7 @@ extension AppDelegate: CLLocationManagerDelegate {
             print("status: authorizedWhenInUse")
         }
         else if (status == .authorizedAlways) {
-            print("status: authorizedAlways")
             locationManager.startUpdatingLocation()
-            isLogging = true
         }
     }
 }
