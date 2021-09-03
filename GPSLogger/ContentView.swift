@@ -18,6 +18,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            // Text(GeoDbUtil.getDatabaseFilePath())
             if self.preferenceManager.isDebugMode {
                 Text("Debug mode is enabled!").foregroundColor(Color.red)
             }

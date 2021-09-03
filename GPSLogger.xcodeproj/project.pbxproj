@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A02CF7726E2E58500CEA72E /* GeoDbUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A02CF7626E2E58500CEA72E /* GeoDbUtil.swift */; };
 		9A069C3526E04AA500E88BA6 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A069C3426E04AA500E88BA6 /* PreferenceManager.swift */; };
 		9A069C3726E04D9300E88BA6 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A069C3626E04D9300E88BA6 /* PreferenceView.swift */; };
 		9A069C3926E051A100E88BA6 /* OpenPreferenceButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A069C3826E051A100E88BA6 /* OpenPreferenceButtonView.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A02CF7626E2E58500CEA72E /* GeoDbUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoDbUtil.swift; sourceTree = "<group>"; };
 		9A069C3426E04AA500E88BA6 /* PreferenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
 		9A069C3626E04D9300E88BA6 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		9A069C3826E051A100E88BA6 /* OpenPreferenceButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPreferenceButtonView.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				9A069C3826E051A100E88BA6 /* OpenPreferenceButtonView.swift */,
 				9A1BE37226D926D600E35E51 /* SceneDelegate.swift */,
 				9A1BE37426D926D600E35E51 /* ContentView.swift */,
+				9A02CF7626E2E58500CEA72E /* GeoDbUtil.swift */,
 				9AE5A4B826DE54E100A92BE0 /* FileUtil.swift */,
 				9A1BE37626D926D900E35E51 /* Assets.xcassets */,
 				9A1BE37B26D926D900E35E51 /* LaunchScreen.storyboard */,
@@ -158,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A069C3526E04AA500E88BA6 /* PreferenceManager.swift in Sources */,
+				9A02CF7726E2E58500CEA72E /* GeoDbUtil.swift in Sources */,
 				9A1BE37126D926D600E35E51 /* AppDelegate.swift in Sources */,
 				9A1BE37326D926D600E35E51 /* SceneDelegate.swift in Sources */,
 				9A1BE37526D926D600E35E51 /* ContentView.swift in Sources */,
