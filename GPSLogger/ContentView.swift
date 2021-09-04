@@ -14,11 +14,12 @@ struct ContentView: View {
     @State private var isExportAlertShowed = false
     @State private var logs = ""
     
+    let geoDbUtil = GeoDbUtil()
     let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
-            // Text(GeoDbUtil.getDatabaseFilePath())
+            Text(geoDbUtil.searchTown(currentLat: 35.0, currentLon: 135.0))
             if self.preferenceManager.isDebugMode {
                 Text("Debug mode is enabled!").foregroundColor(Color.red)
             }
