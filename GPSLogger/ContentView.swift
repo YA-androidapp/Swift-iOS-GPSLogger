@@ -14,13 +14,11 @@ struct ContentView: View {
     @State private var isExportAlertShowed = false
     @State private var logs = ""
     
-    let geoDbUtil = GeoDbUtil()
     let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
-            Text(geoDbUtil.searchTown(currentLat: 35.0, currentLon: 135.0))
-            if self.preferenceManager.isDebugMode {
+            if UserDefaults.standard.bool(forKey: "isDebugMode") {
                 Text("Debug mode is enabled!").foregroundColor(Color.red)
             }
             HStack {
@@ -33,7 +31,9 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity)
                     .font(.system(size: 8))
                     .onReceive(timer, perform: { time in
-                        logs = (UserDefaults.standard.object(forKey: "logs") as! [String]).joined(separator: "\n")
+                        if UserDefaults.standard.object(forKey: "logs") != nil {
+                            logs = (UserDefaults.standard.object(forKey: "logs") as! [String]).joined(separator: "\n")
+                        }
                     })
             }
             .frame(maxWidth: .infinity, maxHeight: 360.0)
@@ -52,9 +52,9 @@ struct ContentView: View {
                             .onTapGesture {
                                 let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
                                 appDelegate?.startLocating()
-                                self.preferenceManager.isLogging = true
+                                UserDefaults.standard.set(true, forKey: "isLogging")
                             }
-                            .opacity(self.preferenceManager.isLogging ? 0 : 1)
+                            .opacity(UserDefaults.standard.bool(forKey: "isLogging") ? 0 : 1)
                         
                         // Stop
                         Image(systemName: "stop.circle")
@@ -64,9 +64,9 @@ struct ContentView: View {
                             .onTapGesture {
                                 let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
                                 appDelegate?.stopLocating()
-                                self.preferenceManager.isLogging = false
+                                UserDefaults.standard.set(false, forKey: "isLogging")
                             }
-                            .opacity(self.preferenceManager.isLogging ? 1 : 0)
+                            .opacity(UserDefaults.standard.bool(forKey: "isLogging") ? 1 : 0)
                     }
                 }
                 VStack{

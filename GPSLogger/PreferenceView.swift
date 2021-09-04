@@ -13,6 +13,11 @@ struct PreferenceView: View {
     
     @EnvironmentObject var preferenceManager: PreferenceManager
     
+    // @State private var currentLatitude: Double = 0
+    // @State private var currentLongitude: Double = 0
+    // @State private var locatingError: Double = 0.001
+    
+    @State private var isDebugMode = false
     @State private var homeAreaLatitude = ""
     @State private var homeAreaLongitude = ""
     @State private var homeAreaRadius = ""
@@ -26,7 +31,7 @@ struct PreferenceView: View {
         NavigationView {
             Form {
                 Section(header: Text("Debug mode")) {
-                    Toggle(isOn: $preferenceManager.isDebugMode) {
+                    Toggle(isOn: $isDebugMode) {
                         Text("Enable debug mode")
                     }
                 }
@@ -46,6 +51,8 @@ struct PreferenceView: View {
                 
                 Section(header: Text("Save")) {
                     Button(action: {
+                        UserDefaults.standard.set(self.isDebugMode, forKey: "isDebugMode")
+                        
                         if let latitudeValue = Double(self.homeAreaLatitude){
                             if -90 <= latitudeValue && latitudeValue <= 90{
                                 UserDefaults.standard.set(latitudeValue, forKey: "homeAreaLatitude")
@@ -99,6 +106,8 @@ struct PreferenceView: View {
                     }
                 }
             }.onAppear(perform: {
+                isDebugMode = UserDefaults.standard.bool(forKey: "isDebugMode")
+                
                 homeAreaLatitude = String(UserDefaults.standard.double(forKey: "homeAreaLatitude"))
                 homeAreaLongitude = String(UserDefaults.standard.double(forKey: "homeAreaLongitude"))
                 homeAreaRadius = String(UserDefaults.standard.double(forKey: "homeAreaRadius"))
