@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Swifter
+import UserNotifications
 
 struct ContentView: View {
     @EnvironmentObject var preferenceManager: PreferenceManager
@@ -16,6 +17,37 @@ struct ContentView: View {
     @State private var logs = ""
     
     let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    
+    
+    private func log(fil: String, lin: Int, clm: Int, cls: String, fun: String, key: String, val: String){
+        if UserDefaults.standard.bool(forKey: "isDebugMode")  {
+            DebugUtil.log(fil: fil, lin: lin,clm: clm,cls: cls, fun: fun, key: key, val: val)
+        }
+    }
+    
+    private func notify(title: String, message: String){
+        log(fil: #file, lin: #line,clm: #column,cls: String(describing: type(of: self)), fun: #function, key: "start", val: "")
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound]){
+            (granted, _) in
+            print("granted: " + String(granted))
+            if granted {
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                
+                let content = UNMutableNotificationContent()
+                content.title = title
+                content.body = message
+                content.sound = UNNotificationSound.default
+                
+                let request = UNNotificationRequest(identifier: "gpsloggernotification", content: content, trigger: trigger)
+                
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                
+            }
+        }
+        
+        log(fil: #file, lin: #line,clm: #column,cls: String(describing: type(of: self)), fun: #function, key: "start", val: "")
+    }
     
     var body: some View {
         VStack {
@@ -123,31 +155,38 @@ struct ContentView: View {
                         }
                 }
                 
-                Button(action: {
-                    let consumerKey = UserDefaults.standard.string(forKey: "consumerKey") ?? ""
-                    let consumerSecret = UserDefaults.standard.string(forKey: "consumerSecret") ?? ""
-                    let accessKey = UserDefaults.standard.string(forKey: "accessKey") ?? ""
-                    let accessSecret = UserDefaults.standard.string(forKey: "accessSecret") ?? ""
-                    
-                    if consumerKey != "" &&  consumerSecret != "" &&  accessKey != "" &&  accessSecret != "" {
-                        let swifter = Swifter(consumerKey: consumerKey, consumerSecret: consumerSecret, oauthToken: accessKey, oauthTokenSecret: accessSecret)
-                        
-                        let currentLatitude = Double(UserDefaults.standard.string(forKey: "currentLatitude") ?? "") ?? -91
-                        let currentLongitude = Double(UserDefaults.standard.string(forKey: "currentLongitude") ?? "") ?? -181
-                        let url = "https://www.google.com/maps/search/?api=1&query=\(currentLatitude),\(currentLongitude)"
-                        swifter.postTweet(status:url, success: { response in
-                            print(response)
-                        }, failure: { error in
-                            print(error)
-                        })
-                    }
-                    
-                }) {
-                    HStack {
-                        Spacer()
-                        Text("Tweet")
-                        Spacer()
-                    }
+                VStack{
+                    Text("Tweet").font(.footnote)
+                    Image(systemName: "text.bubble")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 32, height: 32)
+                        .onTapGesture {
+                            let consumerKey = UserDefaults.standard.string(forKey: "consumerKey") ?? ""
+                            let consumerSecret = UserDefaults.standard.string(forKey: "consumerSecret") ?? ""
+                            let accessKey = UserDefaults.standard.string(forKey: "accessKey") ?? ""
+                            let accessSecret = UserDefaults.standard.string(forKey: "accessSecret") ?? ""
+                            
+                            if consumerKey != "" &&  consumerSecret != "" &&  accessKey != "" &&  accessSecret != "" {
+                                let swifter = Swifter(consumerKey: consumerKey, consumerSecret: consumerSecret, oauthToken: accessKey, oauthTokenSecret: accessSecret)
+                                
+                                let currentLatitude = Double(UserDefaults.standard.string(forKey: "currentLatitude") ?? "") ?? -91
+                                let currentLongitude = Double(UserDefaults.standard.string(forKey: "currentLongitude") ?? "") ?? -181
+                                let url = "https://www.google.com/maps/search/?api=1&query=\(currentLatitude),\(currentLongitude)"
+                                
+                                let message = url // town + url
+                                
+                                swifter.postTweet(status:message, success: { response in
+                                    log(fil: #file, lin: #line,clm: #column,cls: String(describing: type(of: self)), fun: #function, key: "postTweet", val: "\(response)")
+                                    
+                                    //通知
+                                    notify(title: "Tweeted", message: message)
+                                }, failure: { error in
+                                    print(error)
+                                })
+                            }
+                            
+                        }
                 }
             }
             .padding()

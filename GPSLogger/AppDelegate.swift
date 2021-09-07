@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ObservableObject {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         log(fil: #file, lin: #line,clm: #column,cls: String(describing: type(of: self)), fun: #function, key: "start", val: "")
         
+        UNUserNotificationCenter.current().delegate = self
+        
         let homeAreaLatitude = UserDefaults.standard.double(forKey: "homeAreaLatitude")
         let homeAreaLongitude = UserDefaults.standard.double(forKey: "homeAreaLongitude")
         homeAreaRadius = UserDefaults.standard.double(forKey: "homeAreaRadius")
@@ -149,5 +151,15 @@ extension AppDelegate: CLLocationManagerDelegate {
         log(fil: #file, lin: #line,clm: #column,cls: String(describing: type(of: self)), fun: #function, key: "start", val: "")
         log(fil: #file, lin: #line,clm: #column,cls: String(describing: type(of: self)), fun: #function, key: "error", val: "\(error)")
         log(fil: #file, lin: #line,clm: #column,cls: String(describing: type(of: self)), fun: #function, key: "end", val: "")
+    }
+    
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .list, .sound, .badge])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
     }
 }
