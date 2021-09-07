@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Swifter
 
 struct ContentView: View {
     @EnvironmentObject var preferenceManager: PreferenceManager
@@ -120,6 +121,33 @@ struct ContentView: View {
                             PreferenceView()
                                 .environmentObject(preferenceManager)
                         }
+                }
+                
+                Button(action: {
+                    let consumerKey = UserDefaults.standard.string(forKey: "consumerKey") ?? ""
+                    let consumerSecret = UserDefaults.standard.string(forKey: "consumerSecret") ?? ""
+                    let accessKey = UserDefaults.standard.string(forKey: "accessKey") ?? ""
+                    let accessSecret = UserDefaults.standard.string(forKey: "accessSecret") ?? ""
+                    
+                    if consumerKey != "" &&  consumerSecret != "" &&  accessKey != "" &&  accessSecret != "" {
+                        let swifter = Swifter(consumerKey: consumerKey, consumerSecret: consumerSecret, oauthToken: accessKey, oauthTokenSecret: accessSecret)
+                        
+                        let currentLatitude = Double(UserDefaults.standard.string(forKey: "currentLatitude") ?? "") ?? -91
+                        let currentLongitude = Double(UserDefaults.standard.string(forKey: "currentLongitude") ?? "") ?? -181
+                        let url = "https://www.google.com/maps/search/?api=1&query=\(currentLatitude),\(currentLongitude)"
+                        swifter.postTweet(status:url, success: { response in
+                            print(response)
+                        }, failure: { error in
+                            print(error)
+                        })
+                    }
+                    
+                }) {
+                    HStack {
+                        Spacer()
+                        Text("Tweet")
+                        Spacer()
+                    }
                 }
             }
             .padding()

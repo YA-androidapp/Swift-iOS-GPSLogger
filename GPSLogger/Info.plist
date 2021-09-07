@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>You must allow to locate</string>
-	<key>NSLocationDefaultAccuracyReduced</key>
-	<string>You must allow to locate</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -20,10 +16,33 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>swifter-YFteTVtx6JavlAj6SZ0Smzz6g</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>You must allow to locate</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>You must allow to locate</string>
+	<key>NSLocationDefaultAccuracyReduced</key>
+	<string>You must allow to locate</string>
+	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	<dict/>
+	<key>NSLocationUsageDescription</key>
+	<string>You must allow to locate</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>You must allow to locate</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -59,14 +78,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>You must allow to locate</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>You must allow to locate</string>
-	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
-	<dict/>
-	<key>NSLocationUsageDescription</key>
-	<string>You must allow to locate</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
