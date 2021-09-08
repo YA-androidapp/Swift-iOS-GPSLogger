@@ -18,7 +18,6 @@ struct ContentView: View {
     
     let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     
-    
     private func log(fil: String, lin: Int, clm: Int, cls: String, fun: String, key: String, val: String){
         if UserDefaults.standard.bool(forKey: "isDebugMode")  {
             DebugUtil.log(fil: fil, lin: lin,clm: clm,cls: cls, fun: fun, key: key, val: val)
@@ -167,14 +166,19 @@ struct ContentView: View {
                             let accessKey = UserDefaults.standard.string(forKey: "accessKey") ?? ""
                             let accessSecret = UserDefaults.standard.string(forKey: "accessSecret") ?? ""
                             
+                            let currentLatitude = Double(UserDefaults.standard.string(forKey: "currentLatitude") ?? "") ?? -91
+                            let currentLongitude = Double(UserDefaults.standard.string(forKey: "currentLongitude") ?? "") ?? -181
+                            let url = "https://www.google.com/maps/search/?api=1&query=\(currentLatitude),\(currentLongitude)"
+                            
+                            let geoDbUtil = GeoDbUtil()
+                            var town = geoDbUtil.searchTown(currentLat: Double(currentLatitude), currentLon: Double(currentLongitude))
+                            if town != ""{
+                                town = town + " "
+                            }
+                            let message = town + url
+                            
                             if consumerKey != "" &&  consumerSecret != "" &&  accessKey != "" &&  accessSecret != "" {
                                 let swifter = Swifter(consumerKey: consumerKey, consumerSecret: consumerSecret, oauthToken: accessKey, oauthTokenSecret: accessSecret)
-                                
-                                let currentLatitude = Double(UserDefaults.standard.string(forKey: "currentLatitude") ?? "") ?? -91
-                                let currentLongitude = Double(UserDefaults.standard.string(forKey: "currentLongitude") ?? "") ?? -181
-                                let url = "https://www.google.com/maps/search/?api=1&query=\(currentLatitude),\(currentLongitude)"
-                                
-                                let message = url // town + url
                                 
                                 swifter.postTweet(status:message, success: { response in
                                     log(fil: #file, lin: #line,clm: #column,cls: String(describing: type(of: self)), fun: #function, key: "postTweet", val: "\(response)")
@@ -184,8 +188,9 @@ struct ContentView: View {
                                 }, failure: { error in
                                     print(error)
                                 })
+                            }else{
+                                notify(title: "Warning",message: "Please set keys and secrets of Twitter.")
                             }
-                            
                         }
                 }
             }

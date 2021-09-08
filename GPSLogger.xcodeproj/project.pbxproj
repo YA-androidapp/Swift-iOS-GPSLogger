@@ -18,6 +18,8 @@
 		9A1BE37726D926D900E35E51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A1BE37626D926D900E35E51 /* Assets.xcassets */; };
 		9A1BE37A26D926D900E35E51 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A1BE37926D926D900E35E51 /* Preview Assets.xcassets */; };
 		9A1BE37D26D926D900E35E51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A1BE37B26D926D900E35E51 /* LaunchScreen.storyboard */; };
+		9A81EDCE26E820A600C17E7C /* GeoDbUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81EDCD26E820A600C17E7C /* GeoDbUtil.swift */; };
+		9A81EDD026E821B300C17E7C /* database.db in Resources */ = {isa = PBXBuildFile; fileRef = 9A81EDCF26E821B300C17E7C /* database.db */; };
 		9AA83CD926E6E4A0001A36D5 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 9AA83CD826E6E4A0001A36D5 /* Swifter */; };
 		9AE5A4B926DE54E100A92BE0 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE5A4B826DE54E100A92BE0 /* FileUtil.swift */; };
 /* End PBXBuildFile section */
@@ -35,6 +37,8 @@
 		9A1BE37926D926D900E35E51 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9A1BE37C26D926D900E35E51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A1BE37E26D926D900E35E51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A81EDCD26E820A600C17E7C /* GeoDbUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoDbUtil.swift; sourceTree = "<group>"; };
+		9A81EDCF26E821B300C17E7C /* database.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = database.db; sourceTree = "<group>"; };
 		9AE5A4B826DE54E100A92BE0 /* FileUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +80,7 @@
 				9A069C3426E04AA500E88BA6 /* PreferenceManager.swift */,
 				9A069C3626E04D9300E88BA6 /* PreferenceView.swift */,
 				9A069C3826E051A100E88BA6 /* OpenPreferenceButtonView.swift */,
+				9A81EDCF26E821B300C17E7C /* database.db */,
 				9A1BE37226D926D600E35E51 /* SceneDelegate.swift */,
 				9A1BE37426D926D600E35E51 /* ContentView.swift */,
 				9AE5A4B826DE54E100A92BE0 /* FileUtil.swift */,
@@ -83,6 +88,7 @@
 				9A1BE37B26D926D900E35E51 /* LaunchScreen.storyboard */,
 				9A1BE37E26D926D900E35E51 /* Info.plist */,
 				9A1BE37826D926D900E35E51 /* Preview Content */,
+				9A81EDCD26E820A600C17E7C /* GeoDbUtil.swift */,
 			);
 			path = GPSLogger;
 			sourceTree = "<group>";
@@ -167,6 +173,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A81EDD026E821B300C17E7C /* database.db in Resources */,
 				9A1BE37D26D926D900E35E51 /* LaunchScreen.storyboard in Resources */,
 				9A1BE37A26D926D900E35E51 /* Preview Assets.xcassets in Resources */,
 				9A1BE37726D926D900E35E51 /* Assets.xcassets in Resources */,
@@ -184,6 +191,7 @@
 				9A1BE37126D926D600E35E51 /* AppDelegate.swift in Sources */,
 				9A1BE37326D926D600E35E51 /* SceneDelegate.swift in Sources */,
 				9A1BE37526D926D600E35E51 /* ContentView.swift in Sources */,
+				9A81EDCE26E820A600C17E7C /* GeoDbUtil.swift in Sources */,
 				9A069C3926E051A100E88BA6 /* OpenPreferenceButtonView.swift in Sources */,
 				9AE5A4B926DE54E100A92BE0 /* FileUtil.swift in Sources */,
 				9A069C3726E04D9300E88BA6 /* PreferenceView.swift in Sources */,

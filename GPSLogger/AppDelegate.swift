@@ -14,6 +14,7 @@ import Swifter
 class AppDelegate: UIResponder, UIApplicationDelegate, ObservableObject {
     var window: UIWindow?
     
+    private var geoDbUtil: GeoDbUtil!
     private var locationManager : CLLocationManager!
     
     private var homeAreaRadius: Double = -1.0
@@ -37,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ObservableObject {
             homeAreaLocation = CLLocation(latitude: homeAreaLatitude, longitude: homeAreaLongitude)
             log(fil: #file, lin: #line,clm: #column,cls: String(describing: type(of: self)), fun: #function, key: "homeAreaLocation", val: "\(String(describing: homeAreaLocation?.coordinate.latitude)),\(String(describing: homeAreaLocation?.coordinate.longitude))")
         }
+        
+        geoDbUtil = GeoDbUtil()
         
         locationManager = CLLocationManager.init()
         locationManager.allowsBackgroundLocationUpdates = true
@@ -135,6 +138,8 @@ extension AppDelegate: CLLocationManagerDelegate {
         
         if(homeAreaLocation == nil || location.distance(from: homeAreaLocation!) > homeAreaRadius){
             self.addLog(formatGPSLogRecord(location: location))
+            
+            print("Town: " + geoDbUtil.searchTown(currentLat: location.coordinate.latitude, currentLon: location.coordinate.longitude))
             
             UserDefaults.standard.set(location.coordinate.latitude, forKey: "currentLatitude")
             UserDefaults.standard.set(location.coordinate.longitude, forKey: "currentLongitude")

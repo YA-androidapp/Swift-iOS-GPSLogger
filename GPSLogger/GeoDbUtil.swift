@@ -37,15 +37,14 @@ class GeoDbUtil {
         }
         
         let finalDatabaseURL = documentsUrl.first!.appendingPathComponent(DB_FILE_NAME)
-        if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false) {
-            let documentsURL = Bundle.main.resourceURL?.appendingPathComponent(DB_FILE_NAME)
-            
-            do {
-                try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
-                return finalDatabaseURL.path
-            } catch let error as NSError {
-                log(fil: #file, lin: #line,clm: #column,cls: String(describing: type(of: self)), fun: #function, key: "error", val: "\(error.description)")
-            }
+        let documentsURL = Bundle.main.resourceURL?.appendingPathComponent(DB_FILE_NAME)
+        
+        do {
+            try? fileManager.removeItem(at: finalDatabaseURL)
+            try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
+            return finalDatabaseURL.path
+        } catch let error as NSError {
+            log(fil: #file, lin: #line,clm: #column,cls: String(describing: type(of: self)), fun: #function, key: "error", val: "\(error.description)")
         }
         
         log(fil: #file, lin: #line,clm: #column,cls: String(describing: type(of: self)), fun: #function, key: "end", val: "")
