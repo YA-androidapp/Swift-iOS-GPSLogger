@@ -153,46 +153,6 @@ struct ContentView: View {
                                 .environmentObject(preferenceManager)
                         }
                 }
-                
-                VStack{
-                    Text("Tweet").font(.footnote)
-                    Image(systemName: "text.bubble")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 32, height: 32)
-                        .onTapGesture {
-                            let consumerKey = UserDefaults.standard.string(forKey: "consumerKey") ?? ""
-                            let consumerSecret = UserDefaults.standard.string(forKey: "consumerSecret") ?? ""
-                            let accessKey = UserDefaults.standard.string(forKey: "accessKey") ?? ""
-                            let accessSecret = UserDefaults.standard.string(forKey: "accessSecret") ?? ""
-                            
-                            let currentLatitude = Double(UserDefaults.standard.string(forKey: "currentLatitude") ?? "") ?? -91
-                            let currentLongitude = Double(UserDefaults.standard.string(forKey: "currentLongitude") ?? "") ?? -181
-                            let url = "https://www.google.com/maps/search/?api=1&query=\(currentLatitude),\(currentLongitude)"
-                            
-                            let geoDbUtil = GeoDbUtil()
-                            var town = geoDbUtil.searchTown(currentLat: Double(currentLatitude), currentLon: Double(currentLongitude))
-                            if town != ""{
-                                town = town + " "
-                            }
-                            let message = town + url
-                            
-                            if consumerKey != "" &&  consumerSecret != "" &&  accessKey != "" &&  accessSecret != "" {
-                                let swifter = Swifter(consumerKey: consumerKey, consumerSecret: consumerSecret, oauthToken: accessKey, oauthTokenSecret: accessSecret)
-                                
-                                swifter.postTweet(status:message, success: { response in
-                                    log(fil: #file, lin: #line,clm: #column,cls: String(describing: type(of: self)), fun: #function, key: "postTweet", val: "\(response)")
-                                    
-                                    //通知
-                                    notify(title: "Tweeted", message: message)
-                                }, failure: { error in
-                                    print(error)
-                                })
-                            }else{
-                                notify(title: "Warning",message: "Please set keys and secrets of Twitter.")
-                            }
-                        }
-                }
             }
             .padding()
         }

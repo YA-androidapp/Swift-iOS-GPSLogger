@@ -22,11 +22,6 @@ struct PreferenceView: View {
     @State private var homeAreaLongitude = ""
     @State private var homeAreaRadius = ""
     
-    @State private var consumerKey = ""
-    @State private var consumerSecret = ""
-    @State private var accessKey = ""
-    @State private var accessSecret = ""
-    
     var body: some View {
         NavigationView {
             Form {
@@ -40,13 +35,6 @@ struct PreferenceView: View {
                     TextField("Latitude", text: $homeAreaLatitude).keyboardType(.decimalPad)
                     TextField("Longitude", text: $homeAreaLongitude).keyboardType(.decimalPad)
                     TextField("Radius", text: $homeAreaRadius).keyboardType(.decimalPad)
-                }
-                
-                Section(header: Text("Twitter")) {
-                    TextField("Consumer key", text: $consumerKey).autocapitalization(.none)
-                    TextField("Consumer Secret", text: $consumerSecret).autocapitalization(.none)
-                    TextField("Access key", text: $accessKey).autocapitalization(.none)
-                    TextField("Access Secret", text: $accessSecret).autocapitalization(.none)
                 }
                 
                 Section(header: Text("Save")) {
@@ -90,11 +78,6 @@ struct PreferenceView: View {
                             UserDefaults.standard.set(-1.0, forKey: "homeAreaRadius")
                         }
                         
-                        UserDefaults.standard.set(consumerKey, forKey: "consumerKey")
-                        UserDefaults.standard.set(consumerSecret, forKey: "consumerSecret")
-                        UserDefaults.standard.set(accessKey, forKey: "accessKey")
-                        UserDefaults.standard.set(accessSecret, forKey: "accessSecret")
-                        
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
                         HStack {
@@ -111,11 +94,6 @@ struct PreferenceView: View {
                 homeAreaLatitude = String(UserDefaults.standard.double(forKey: "homeAreaLatitude"))
                 homeAreaLongitude = String(UserDefaults.standard.double(forKey: "homeAreaLongitude"))
                 homeAreaRadius = String(UserDefaults.standard.double(forKey: "homeAreaRadius"))
-                
-                consumerKey = UserDefaults.standard.string(forKey: "consumerKey") ?? ""
-                consumerSecret = UserDefaults.standard.string(forKey: "consumerSecret") ?? ""
-                accessKey = UserDefaults.standard.string(forKey: "accessKey") ?? ""
-                accessSecret = UserDefaults.standard.string(forKey: "accessSecret") ?? ""
             })
         }
     }
