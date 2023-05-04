@@ -8,7 +8,6 @@
 import UIKit
 
 import CoreLocation
-import Swifter
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ObservableObject {

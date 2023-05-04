@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Swifter
 import UserNotifications
 
 struct ContentView: View {
@@ -57,6 +56,7 @@ struct ContentView: View {
                 Text(" Logs:")
                 Spacer()
             }
+            MapViewWrapper()
             ScrollView(.vertical, showsIndicators: true) {
                 Text(logs)
                     .multilineTextAlignment(.leading)

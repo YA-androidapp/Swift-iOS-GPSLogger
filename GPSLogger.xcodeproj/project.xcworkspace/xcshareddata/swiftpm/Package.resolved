@@ -1,25 +1,14 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "FMDB",
-        "repositoryURL": "https://github.com/ccgus/fmdb",
-        "state": {
-          "branch": null,
-          "revision": "61e51fde7f7aab6554f30ab061cc588b28a97d04",
-          "version": "2.7.7"
-        }
-      },
-      {
-        "package": "Swifter",
-        "repositoryURL": "https://github.com/mattdonnelly/Swifter",
-        "state": {
-          "branch": null,
-          "revision": "50682ebe64e4c08f18957ccfd16888f035c20755",
-          "version": "2.5.0"
-        }
+  "pins" : [
+    {
+      "identity" : "fmdb",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ccgus/fmdb",
+      "state" : {
+        "revision" : "61e51fde7f7aab6554f30ab061cc588b28a97d04",
+        "version" : "2.7.7"
       }
-    ]
-  },
-  "version": 1
+    }
+  ],
+  "version" : 2
 }

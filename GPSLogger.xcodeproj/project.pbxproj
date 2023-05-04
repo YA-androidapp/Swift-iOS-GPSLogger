@@ -3,15 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A02CF7A26E2EBAD00CEA72E /* FMDB in Frameworks */ = {isa = PBXBuildFile; productRef = 9A02CF7926E2EBAD00CEA72E /* FMDB */; };
 		9A02CF8026E3836900CEA72E /* DebugUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A02CF7F26E3836900CEA72E /* DebugUtil.swift */; };
 		9A069C3526E04AA500E88BA6 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A069C3426E04AA500E88BA6 /* PreferenceManager.swift */; };
 		9A069C3726E04D9300E88BA6 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A069C3626E04D9300E88BA6 /* PreferenceView.swift */; };
 		9A069C3926E051A100E88BA6 /* OpenPreferenceButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A069C3826E051A100E88BA6 /* OpenPreferenceButtonView.swift */; };
+		9A15C7252A0334C500EFDF13 /* FMDB in Frameworks */ = {isa = PBXBuildFile; productRef = 9A15C7242A0334C500EFDF13 /* FMDB */; };
+		9A15C7322A033B7600EFDF13 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A15C7312A033B7600EFDF13 /* MapView.swift */; };
 		9A1BE37126D926D600E35E51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1BE37026D926D600E35E51 /* AppDelegate.swift */; };
 		9A1BE37326D926D600E35E51 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1BE37226D926D600E35E51 /* SceneDelegate.swift */; };
 		9A1BE37526D926D600E35E51 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1BE37426D926D600E35E51 /* ContentView.swift */; };
@@ -20,7 +21,6 @@
 		9A1BE37D26D926D900E35E51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A1BE37B26D926D900E35E51 /* LaunchScreen.storyboard */; };
 		9A81EDCE26E820A600C17E7C /* GeoDbUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81EDCD26E820A600C17E7C /* GeoDbUtil.swift */; };
 		9A81EDD026E821B300C17E7C /* database.db in Resources */ = {isa = PBXBuildFile; fileRef = 9A81EDCF26E821B300C17E7C /* database.db */; };
-		9AA83CD926E6E4A0001A36D5 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 9AA83CD826E6E4A0001A36D5 /* Swifter */; };
 		9AE5A4B926DE54E100A92BE0 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE5A4B826DE54E100A92BE0 /* FileUtil.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +29,7 @@
 		9A069C3426E04AA500E88BA6 /* PreferenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
 		9A069C3626E04D9300E88BA6 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		9A069C3826E051A100E88BA6 /* OpenPreferenceButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPreferenceButtonView.swift; sourceTree = "<group>"; };
+		9A15C7312A033B7600EFDF13 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9A1BE36D26D926D600E35E51 /* GPSLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPSLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1BE37026D926D600E35E51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A1BE37226D926D600E35E51 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,8 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A02CF7A26E2EBAD00CEA72E /* FMDB in Frameworks */,
-				9AA83CD926E6E4A0001A36D5 /* Swifter in Frameworks */,
+				9A15C7252A0334C500EFDF13 /* FMDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +89,7 @@
 				9A1BE37E26D926D900E35E51 /* Info.plist */,
 				9A1BE37826D926D900E35E51 /* Preview Content */,
 				9A81EDCD26E820A600C17E7C /* GeoDbUtil.swift */,
+				9A15C7312A033B7600EFDF13 /* MapView.swift */,
 			);
 			path = GPSLogger;
 			sourceTree = "<group>";
@@ -118,6 +119,7 @@
 				9A1BE36926D926D600E35E51 /* Sources */,
 				9A1BE36A26D926D600E35E51 /* Frameworks */,
 				9A1BE36B26D926D600E35E51 /* Resources */,
+				9A15C7302A03396700EFDF13 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -125,8 +127,7 @@
 			);
 			name = GPSLogger;
 			packageProductDependencies = (
-				9A02CF7926E2EBAD00CEA72E /* FMDB */,
-				9AA83CD826E6E4A0001A36D5 /* Swifter */,
+				9A15C7242A0334C500EFDF13 /* FMDB */,
 			);
 			productName = GPSLogger;
 			productReference = 9A1BE36D26D926D600E35E51 /* GPSLogger.app */;
@@ -138,8 +139,9 @@
 		9A1BE36526D926D600E35E51 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					9A1BE36C26D926D600E35E51 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -156,8 +158,7 @@
 			);
 			mainGroup = 9A1BE36426D926D600E35E51;
 			packageReferences = (
-				9A02CF7826E2EBAD00CEA72E /* XCRemoteSwiftPackageReference "fmdb" */,
-				9AA83CD726E6E4A0001A36D5 /* XCRemoteSwiftPackageReference "Swifter" */,
+				9A15C7232A0334C500EFDF13 /* XCRemoteSwiftPackageReference "fmdb" */,
 			);
 			productRefGroup = 9A1BE36E26D926D600E35E51 /* Products */;
 			projectDirPath = "";
@@ -182,6 +183,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9A15C7302A03396700EFDF13 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Look for a global file named 'mapbox' or '.mapbox' within the home directory\ntoken_file=~/.mapbox\ntoken_file2=~/mapbox\ntoken=\"$(cat $token_file 2>/dev/null || cat $token_file2 2>/dev/null)\"\nif [ \"$token\" ]; then\n  plutil -replace MBXAccessToken -string $token \"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\nelse\n  echo 'warning: Missing Mapbox access token'\n  open 'https://account.mapbox.com/access-tokens/'\n  echo \"warning: Get an access token from <https://account.mapbox.com/access-tokens/>, then create a new file at $token_file or $token_file2 that contains the access token.\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9A1BE36926D926D600E35E51 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -194,6 +216,7 @@
 				9A81EDCE26E820A600C17E7C /* GeoDbUtil.swift in Sources */,
 				9A069C3926E051A100E88BA6 /* OpenPreferenceButtonView.swift in Sources */,
 				9AE5A4B926DE54E100A92BE0 /* FileUtil.swift in Sources */,
+				9A15C7322A033B7600EFDF13 /* MapView.swift in Sources */,
 				9A069C3726E04D9300E88BA6 /* PreferenceView.swift in Sources */,
 				9A02CF8026E3836900CEA72E /* DebugUtil.swift in Sources */,
 			);
@@ -395,34 +418,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9A02CF7826E2EBAD00CEA72E /* XCRemoteSwiftPackageReference "fmdb" */ = {
+		9A15C7232A0334C500EFDF13 /* XCRemoteSwiftPackageReference "fmdb" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ccgus/fmdb";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.7.7;
-			};
-		};
-		9AA83CD726E6E4A0001A36D5 /* XCRemoteSwiftPackageReference "Swifter" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mattdonnelly/Swifter";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.5.0;
+				kind = exactVersion;
+				version = 2.7.7;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9A02CF7926E2EBAD00CEA72E /* FMDB */ = {
+		9A15C7242A0334C500EFDF13 /* FMDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9A02CF7826E2EBAD00CEA72E /* XCRemoteSwiftPackageReference "fmdb" */;
+			package = 9A15C7232A0334C500EFDF13 /* XCRemoteSwiftPackageReference "fmdb" */;
 			productName = FMDB;
-		};
-		9AA83CD826E6E4A0001A36D5 /* Swifter */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9AA83CD726E6E4A0001A36D5 /* XCRemoteSwiftPackageReference "Swifter" */;
-			productName = Swifter;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
